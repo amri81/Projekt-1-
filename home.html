@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Airbnb-Reservierungsverwaltung – Start</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* Mini Styles nur für die Startseite – kann auch in style.css */
+    :root { --brand:#0aa3a3; --brand2:#e94f6b; }
+    body{font-family:Montserrat,system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;background:#fafafa;color:#222}
+    .nav{display:flex;justify-content:space-between;align-items:center;max-width:1100px;margin:16px auto;padding:0 16px}
+    .logo{font-weight:700;font-size:20px;letter-spacing:.3px}
+    .nav a{margin-left:12px;text-decoration:none;padding:8px 14px;border-radius:10px}
+    .btn{background:var(--brand);color:#fff}
+    .btn-outline{border:1px solid #ddd;color:#222;background:#fff}
+    .hero{max-width:1100px;margin:40px auto;padding:24px 16px;display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center}
+    .hero h1{font-size:40px;line-height:1.15;margin:0 0 12px}
+    .hero p{font-size:18px;opacity:.9;margin:0 0 20px}
+    .hero .cta a{display:inline-block;margin-right:12px}
+    .mock{width:100%;border-radius:18px;box-shadow:0 20px 60px rgba(0,0,0,.08)}
+    .badges{display:flex;gap:16px;margin-top:10px;opacity:.8;flex-wrap:wrap}
+    .badge{font-size:12px;border:1px solid #e9e9e9;padding:6px 10px;border-radius:999px;background:#fff}
+    .features{max-width:1100px;margin:10px auto 60px;padding:0 16px;display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+    .card{background:#fff;border:1px solid #eee;border-radius:18px;padding:18px;box-shadow:0 10px 28px rgba(0,0,0,.04)}
+    .card h3{margin:6px 0 6px;font-size:18px}
+    .card p{margin:0;opacity:.85;font-size:14px;line-height:1.5}
+    .footer{max-width:1100px;margin:0 auto 40px;padding:0 16px;opacity:.7;font-size:13px}
+    /* Cookie Bar */
+    .cookie{position:fixed;left:16px;right:16px;bottom:16px;background:#fff;border:1px solid #eee;border-radius:14px;padding:14px 16px;box-shadow:0 10px 30px rgba(0,0,0,.1);display:flex;gap:12px;align-items:center;z-index:50}
+    .cookie p{margin:0;flex:1;font-size:14px}
+    .cookie button{border:0;border-radius:10px;padding:8px 14px;cursor:pointer}
+    .cookie .accept{background:var(--brand);color:#fff}
+    .cookie .more{background:#fff;border:1px solid #ddd}
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+  <!-- NAV -->
+  <nav class="nav">
+    <div class="logo">🏠 Airbnb-Reservierungsverwaltung</div>
+    <div>
+      <a class="btn-outline" href="index.html">Zur App</a>
+      <a class="btn" href="register.html">Jetzt registrieren</a>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div>
+      <h1>Reservierungen schneller verwalten</h1>
+      <p>Füge Buchungen in Sekunden hinzu, lade Ausweis-/Pass-Fotos, importiere Excel-Listen und exportiere Monats- oder Jahresberichte als PDF.</p>
+      <div class="cta">
+        <a class="btn" href="register.html">Kostenlos starten</a>
+        <a class="btn-outline" href="index.html">Schon registriert? Login</a>
+      </div>
+      <div class="badges">
+        <span class="badge">📊 PDF-Export</span>
+        <span class="badge">📥 Excel-Import</span>
+        <span class="badge">🔐 Lokale Daten</span>
+        <span class="badge">⚡ Einfache Bedienung</span>
+      </div>
+    </div>
+    <div>
+      <!-- Platzhalter-Bild (du kannst später einen Screenshot deiner App nehmen) -->
+      <img class="mock" src="https://images.unsplash.com/photo-1513694203232-719a280e022f?q=80&w=1200&auto=format&fit=crop" alt="Mockup Kalender & Buchungen">
+    </div>
+  </section>
+
+  <!-- FEATURES -->
+  <section class="features">
+    <div class="card">
+      <h3>🔁 Excel-Import</h3>
+      <p>Zieh deine Datei per Drag-and-Drop rein und füge Einträge Schritt für Schritt in das Formular ein.</p>
+    </div>
+    <div class="card">
+      <h3>🧾 PDF-Berichte</h3>
+      <p>Exportiere Monats- oder Jahresumsätze – optional gefiltert nach Unterkunft – mit einem Klick.</p>
+    </div>
+    <div class="card">
+      <h3>🏘 Mehrere Unterkünfte</h3>
+      <p>Behalte alle Apartments/Unterkünfte im Blick und filtere Auswertungen pro Objekt.</p>
+    </div>
+  </section>
+
+  <div class="footer">© <span id="y"></span> Airbnb-Reservierungsverwaltung</div>
+
+  <!-- Cookie Hinweis (sehr schlicht, nur Demo) -->
+  <div class="cookie" id="cookieBar" hidden>
+    <p>Wir verwenden nur technisch notwendige Cookies für Grundfunktionen (z. B. Login). <a href="#">Mehr erfahren</a></p>
+    <button class="more" id="cookieLater">Später</button>
+    <button class="accept" id="cookieOk">Alles akzeptieren</button>
+  </div>
+
+  <script>
+    // Jahr
+    document.getElementById('y').textContent = new Date().getFullYear();
+
+    // Cookie Bar (Demo)
+    const cookieKey = "cookieAccepted";
+    const bar = document.getElementById("cookieBar");
+    if (!localStorage.getItem(cookieKey)) bar.hidden = false;
+    document.getElementById("cookieOk").onclick = () => { localStorage.setItem(cookieKey, "1"); bar.hidden = true; };
+    document.getElementById("cookieLater").onclick = () => { bar.hidden = true; };
+  </script>
+</body>
+</html>

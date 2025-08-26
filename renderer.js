@@ -692,35 +692,3 @@ function loginUser(e){
   return false;
 }
 
-function registerUser(e){
-  e.preventDefault();
-
-  const vorname = document.getElementById("reg-vorname").value.trim();
-  const nachname = document.getElementById("reg-nachname").value.trim();
-  const email = document.getElementById("reg-email").value.trim();
-  const pass = document.getElementById("reg-password").value;
-  const pass2= document.getElementById("reg-password2").value;
-
-  const err = document.getElementById("error"), ok = document.getElementById("success");
-  err.textContent=""; ok.textContent="";
-
-  const users = loadUsers();
-
-  if (pass !== pass2) {
-    err.textContent = "❌ Passwörter stimmen nicht überein.";
-    return false;
-  }
-  if (users[email]) {
-    err.textContent = "❌ Diese E-Mail ist schon registriert.";
-    return false;
-  }
-
-  // Benutzer speichern (key = Email)
-  users[email] = { vorname, nachname, password: pass };
-  saveUsers(users);
-
-  ok.textContent = "✅ Registrierung erfolgreich. Du kannst dich jetzt einloggen.";
-  setTimeout(()=> window.location.href = "login.html", 1000);
-  return false;
-}
-
